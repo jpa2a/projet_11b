@@ -1,10 +1,44 @@
-export function User(){
-    
 
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { profileUser } from "../redux/auth/profileSlice";
+
+export function Profile(){
+  const token = useSelector((state) => state.user.token)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  dispatch(profileUser(token)).then((result) => {
+    if(result.payload){
+    // console.log(result.payload.email)
+      dispatch({
+      type: "profile/edit",
+      payload: result.payload,
+    }) 
+    }
+    else{
+     navigate('/');
+    }
+  })
+ 
+/* 
+  if(token){
+    const request = axios.post("http://localhost:3001/api/v1/user/profile", null,{ headers: {"Authorization": "Bearer " + token },})
+    .then((res) => {
+      console.log(res.data.body);
+    })
+  
+  }
+  else{
+    navigate('/');
+  }
+ */
+  const profileUserName = useSelector((state) => state.profile.userName)
+  console.log(profileUserName)
     return <>
        <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>Welcome back<br />{profileUserName}</h1>
         <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>

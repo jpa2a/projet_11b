@@ -2,7 +2,7 @@
 import { useRef } from "react";
 // import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/userSlice";
+import { loginUser } from "../redux/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 // import { postLogin } from "../actions/login.action";
@@ -19,17 +19,17 @@ export function Login(){
   const postForm = async (e) => {
     e.preventDefault();
     
-    console.log(form.current[0].value)
-    console.log(form.current[1].value)
+   // console.log(form.current[0].value)
+   // console.log(form.current[1].value)
    
     const userLogin = {
       email: form.current[0].value,
       password: form.current[1].value,
-
     }
+    
     dispatch(loginUser(userLogin)).then((result) => {
       if(result.payload){
-        navigate('/user');
+        navigate('/profile');
       }
     })
   /*   axios.post("http://localhost:3001/api/v1/user/login", userLogin).then((res) => {
