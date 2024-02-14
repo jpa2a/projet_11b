@@ -58,8 +58,8 @@ export function Login(){
         <h1>Log In</h1>
         <form ref={form} onSubmit={(e) => postForm(e)}>
           <div className="input-wrapper">
-            <label htmlFor="username">Email</label>
-            <input type="text" id="username" />
+            <label htmlFor="email">Email</label>
+            <input type="text" id="email" />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
@@ -71,7 +71,7 @@ export function Login(){
           </div>
            {/* <Link to='/user' className="sign-in-button">Sign In</Link> */}
            <button className="sign-in-button">{loading ? 'Loading' : 'Log In'}</button>
-           {error && (<div>{error}</div>)}
+           {error && (<div className="errorLogin">{error}</div>)}
         </form>
       </section>
     </main>

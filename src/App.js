@@ -6,6 +6,7 @@ import {Home} from "./pages/home.js";
 import {Profile} from "./pages/profile.js";
 import {Login} from "./pages/login.js";
 import { Signup } from './pages/signup.js';
+import { Erreur } from './pages/erreur404.js';
 
 
 
@@ -22,6 +23,7 @@ function App() {
   <Route path="login" element={<Login />} />
   <Route path="profile" element={<Profile />} />
   <Route path="signup" element={<Signup />} />
+  <Route path="*" element={<Erreur />}/>
   </Routes>
   <Footer />
   </BrowserRouter>

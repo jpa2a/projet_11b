@@ -38,6 +38,7 @@ const logOut = () =>{
         <div>
       {token ? (
         <>
+        <Link to='/profile' className="main-nav-item"><i className="fa fa-user-circle"></i> Profile</Link>
         <Link to='/' className="main-nav-item" onClick={logOut}> Log out</Link>
         </>
       ):
