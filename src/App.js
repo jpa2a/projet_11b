@@ -6,12 +6,26 @@ import {Home} from "./pages/home.js";
 import {Profile} from "./pages/profile.js";
 import {Login} from "./pages/login.js";
 import { Erreur } from './pages/erreur404.js';
+import { useDispatch } from 'react-redux';
 
+const token = localStorage.getItem('token')
 
 
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  if(!token){
+    dispatch({
+      type: "user/logOut",
+    })
+     dispatch({
+      type: "profile/logOut",
+    }) 
+  }
+
   return (
     <>
     

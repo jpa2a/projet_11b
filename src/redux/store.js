@@ -21,11 +21,35 @@ const reducer = combineReducers({
   profile: profileReducer,
 });
 
+/* const rootReducer = (state, action) => {
+  if (action.type === 'counter/logout') {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
+};
+ */
+
+const allReducers = combineReducers({
+  user: userReducer,
+  profile: profileReducer,
+});
+
+const rootReducer = (state, action) => {
+  if (action.type === 'all/logOut') {
+    console.log("test")
+    state = undefined;
+  }
+
+
+  return allReducers(state, action);
+}
+
+
 const persistedReducer = persistReducer(persistConfig, reducer);
 
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: persistedReducer, rootReducer,
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
     serializableCheck: {

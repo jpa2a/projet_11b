@@ -49,6 +49,16 @@ const profileSlice = createSlice({
             state.userName = action.payload;
         },
 
+      /*   logOut: (state) => {
+            console.log(state)
+            state.id = null;
+            state.email = null ;
+            state.firstName = null ; 
+            state.lastName = null;
+            state.updatedAt = null;
+            state.createdAt = null;
+         
+        }, */
         logOut: () => initialState,
     }
 })

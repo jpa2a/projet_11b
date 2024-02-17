@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 import { profileUser } from "../redux/auth/profileSlice";
-// import { useDispatch } from "react-redux";
-// import { postLogin } from "../actions/login.action";
+//import { useDispatch } from "react-redux";
+//import { postLogin } from "../actions/login.action";
 
 export function Login(){
 // const setToken = useSelector((state) => state.token);
@@ -23,7 +23,9 @@ export function Login(){
     
    // console.log(form.current[0].value)
    // console.log(form.current[1].value)
-   
+    const checked = {
+      bool: form.current[2].checked,
+    }
     const userLogin = {
       email: form.current[0].value,
       password: form.current[1].value,
@@ -31,16 +33,25 @@ export function Login(){
     
     dispatch(loginUser(userLogin)).then((result) => {
       if(result.payload){
-        dispatch(profileUser(token)).then((result) => {
-          if(result.payload){
-          // console.log(result.payload.email)
-            dispatch({
-            type: "profile/edit",
-            payload: result.payload,
-          }) 
+          if (checked.bool === true){
+            localStorage.setItem('token', result.payload)
+           // console.log(checked)
+          }
+          else{
+           localStorage.removeItem('token')
           }
           
-        })
+        
+         dispatch(profileUser(result.payload)).then((resultat) => {
+          if(resultat.payload){
+          //  console.log(resultat.payload)
+              dispatch({
+              type: "profile/edit",
+              payload: resultat.payload,
+              }) 
+          }
+        }) 
+ 
         navigate('/profile');
       }
     })

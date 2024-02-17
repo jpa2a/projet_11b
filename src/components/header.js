@@ -13,19 +13,17 @@ export function Header(){
     
     return token;
 } */
-const logOut = () =>{
-//  localStorage.removeItem('token');
-//  token = null;
-//  state.token.token = null;
-//  setToken(null);
+   const logOut = () =>{
+
+    localStorage.removeItem('token')
   dispatch({
     type: "user/logOut",
   })
-  dispatch({
+   dispatch({
     type: "profile/logOut",
-  })
-}
-
+  }) 
+} 
+//  () => dispatch({ type: "all/logOut", })
 //  const [token, setToken] = useState(getToken());
 
     return <>

@@ -2,15 +2,24 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 //import { profileUser } from "../redux/auth/profileSlice";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from "axios";
 
 export function Profile(){
   const token = useSelector((state) => state.user.token)
+  const tokenStorage = localStorage.getItem('token')
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const form = useRef();
   const [edit, setEdit] = useState(false);
+ 
+ 
+  useEffect(() => {
+    if (!token){
+      navigate('/');
+    }
+   
+})
 /* 
   dispatch(profileUser(token)).then((result) => {
     if(result.payload){
@@ -24,9 +33,15 @@ export function Profile(){
      navigate('/');
     }
   })
-  */
+   */
+ /*  dispatch(profileUser(token)).then((result) => {
+    if(!result.payload){
+      navigate('/');
+    }
+    
+  }) */
 
-
+  
 /* 
   if(token){
     const request = axios.post("http://localhost:3001/api/v1/user/profile", null,{ headers: {"Authorization": "Bearer " + token },})
@@ -58,10 +73,11 @@ const postForm = async (e) => {
     userName: form.current[0].value,
   }
     axios.put("http://localhost:3001/api/v1/user/profile", userName,{ headers: {"Authorization": "Bearer " + token },});
-  /* dispatch({
+
+   dispatch({
     type: "profile/editUsername",
     payload: form.current[0].value,
-  })  */
+  })  
   toggleEdit()
 }
 

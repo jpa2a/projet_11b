@@ -1,12 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+//import { asyncstorage } from "react-native";
 import axios from "axios";
-
+/* 
+async function storetoken(token) {
+    try {
+       await asyncstorage.setitem("token2", token);
+    } catch (error) {
+      console.log("something went wrong", error);
+    }
+  }
+ */
 export const loginUser=createAsyncThunk(
     'token/loginUser',
     async(userLogin)=>{
         const request = await axios.post("http://localhost:3001/api/v1/user/login", userLogin);
         const response = await request.data.body.token;
-        localStorage.setItem('token', response)
+       // storetoken(response);
+      //  localStorage.setItem('token', response)
        // console.log(response)
         return response;
     }
