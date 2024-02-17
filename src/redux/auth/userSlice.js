@@ -42,7 +42,7 @@ const userSlice = createSlice({
         .addCase(loginUser.rejected,(state, action)=>{
             state.loading = false ;
             state.token = null ;
-            console.log(action.error.message)
+           // console.log(action.error.message)
             if(action.error.message === 'Request failed with status code 400'){
                 state.error = 'erreur ! mauvais email ou mot de passe';
             }

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/auth/userSlice";
 import { useNavigate } from "react-router-dom";
+import { profileUser } from "../redux/auth/profileSlice";
 // import { useDispatch } from "react-redux";
 // import { postLogin } from "../actions/login.action";
 
@@ -13,6 +14,7 @@ export function Login(){
 //  const dispatch = useDispatch();
   const form = useRef();
   const {loading, error} = useSelector((state) => state.user)
+  const token = useSelector((state) => state.user.token)
   const dispatch = useDispatch();
   const navigate = useNavigate();
     
@@ -29,6 +31,16 @@ export function Login(){
     
     dispatch(loginUser(userLogin)).then((result) => {
       if(result.payload){
+        dispatch(profileUser(token)).then((result) => {
+          if(result.payload){
+          // console.log(result.payload.email)
+            dispatch({
+            type: "profile/edit",
+            payload: result.payload,
+          }) 
+          }
+          
+        })
         navigate('/profile');
       }
     })

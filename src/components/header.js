@@ -5,6 +5,7 @@ import {  Link } from 'react-router-dom';
 export function Header(){
   const dispatch = useDispatch();  
   const token = useSelector((state) => state.user.token)
+  const user = (useSelector((state) => state.profile.firstName)) +` `+ (useSelector((state) => state.profile.lastName))
  // console.log(token)
 
  /*  function getToken(){
@@ -38,13 +39,12 @@ const logOut = () =>{
         <div>
       {token ? (
         <>
-        <Link to='/profile' className="main-nav-item"><i className="fa fa-user-circle"></i> Profile</Link>
+        <Link to='/profile' className="main-nav-item"><i className="fa fa-user-circle"></i> {user}</Link>
         <Link to='/' className="main-nav-item" onClick={logOut}> Log out</Link>
         </>
       ):
         (<>
         <Link to='/login' className="main-nav-item"><i className="fa fa-user-circle"></i> Login</Link>
-        <Link to='/signup' className="main-nav-item"> Sign In</Link>
         </>)}
         </div>
         

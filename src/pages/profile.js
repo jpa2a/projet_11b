@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { profileUser } from "../redux/auth/profileSlice";
+//import { profileUser } from "../redux/auth/profileSlice";
 import { useState, useRef } from 'react';
 import axios from "axios";
 
@@ -11,7 +11,7 @@ export function Profile(){
   const dispatch = useDispatch();
   const form = useRef();
   const [edit, setEdit] = useState(false);
-
+/* 
   dispatch(profileUser(token)).then((result) => {
     if(result.payload){
     // console.log(result.payload.email)
@@ -24,7 +24,9 @@ export function Profile(){
      navigate('/');
     }
   })
- 
+  */
+
+
 /* 
   if(token){
     const request = axios.post("http://localhost:3001/api/v1/user/profile", null,{ headers: {"Authorization": "Bearer " + token },})
