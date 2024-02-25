@@ -282,24 +282,50 @@ body {
 }
 
 .edit-button {
-  border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
+/*   border: 5px solid; */
+  border-color: #00bc77;
 }
 
 .editInput{
-  font-size: 2rem;
-  color: white;
+  font-size: 1rem;
+  color: black;
   font-weight: bold;
-  background-color: #12002b;
-  text-align: center;
+  background-color: white;
+  height: 30px;
+  width: 150px;
+  border-radius: 2px;
+/*   text-align: center; */
   border: 0px solid;
   /* height: 20px;
   width: 160px; */
   
 }
+
+.disabled{
+  color: #4c4747;
+  background-color: rgb(184, 177, 177);
+}
+
+
+.form{
+/*   background-color: goldenrod; */
+  display: flex;
+  justify-content: center;
+}
+.formLine{
+  display: flex;
+  margin-block: 0.7rem;
+  justify-content: space-between;
+  align-items: center;
+  
+
+}
+
+
 
 .header {
   color: #fff;

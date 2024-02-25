@@ -1,13 +1,11 @@
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-//import { profileUser } from "../redux/auth/profileSlice";
 import { useState, useRef, useEffect } from 'react';
 import axios from "axios";
 
 export function Profile(){
   const token = useSelector((state) => state.user.token)
-  const tokenStorage = localStorage.getItem('token')
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const form = useRef();
@@ -85,18 +83,25 @@ const postForm = async (e) => {
 
   //console.log(edit)
   const profileUserName = useSelector((state) => state.profile.userName)
+  const profilefirstName = useSelector((state) => state.profile.firstName)
+  const profilelastName = useSelector((state) => state.profile.lastName)
   //console.log(profileUserName)
     return <>
        <main className="main bg-dark">
 
-     {edit ? <div className="header">
+     {edit ? <div className="header form">
         <form ref={form} onSubmit={(e) => postForm(e)}>
-        <h1>Welcome back<br /><input id="username" className="editInput" type="text" defaultValue={profileUserName}></input></h1>
-        <button className="edit-button">Valider</button>
+        <h1>Edit user info<br /></h1>
+        
+        <div className="formLine"><label htmlFor="username">User name: </label><input id="username" className="editInput" type="text" defaultValue={profileUserName}></input></div>
+        <div className="formLine"><label htmlFor="firstname">First name: </label><input id="firstname" className="editInput disabled" type="text" Value={profilefirstName} disabled></input></div>
+        <div className="formLine"><label htmlFor="lastname">Last name: </label><input id="lastname" className="editInput disabled" type="text" Value={profilelastName} disabled></input></div>
+        <button className="edit-button">Save</button>
+        <button className="edit-button" onClick={toggleEdit}>Cancel</button>
         </form>
       </div> 
       : <div className="header">
-        <h1>Welcome back<br />{profileUserName}</h1>
+        <h1>Welcome back<br />{profileUserName} !</h1>
         <button className="edit-button" onClick={toggleEdit}>Edit Name</button>
       </div>}
       

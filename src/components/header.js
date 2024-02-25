@@ -5,8 +5,10 @@ import {  Link } from 'react-router-dom';
 export function Header(){
   const dispatch = useDispatch();  
   const token = useSelector((state) => state.user.token)
-  const user = (useSelector((state) => state.profile.firstName)) +` `+ (useSelector((state) => state.profile.lastName))
- // console.log(token)
+  const user = (useSelector((state) => state.profile.firstName))
+
+/*   const user = (useSelector((state) => state.profile.firstName)) +` `+ (useSelector((state) => state.profile.lastName))
+ */ // console.log(token)
 
  /*  function getToken(){
     let token = localStorage.getItem('token');
